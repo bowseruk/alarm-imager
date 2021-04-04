@@ -34,21 +34,22 @@ SDCARDTABLE=${BOARD_DIR}/microsd.out
 # make folders
 mkdir -p ${ROOT_DIR}
 mkdir -p ${BOARD_DIR}
+cd ${BOARD_DIR}
 case $BOARD in
 #BananaPiPro
 	BananaPiPro)
 		IMAGE=${BOARD_DIR}/ArchLinuxARM-arm7-latest.tar.gz
-		wget -N -O ${IMAGE} http://os.archlinuxarm.org/os/ArchLinuxARM-arm7-latest.tar.gz
+		wget -N http://os.archlinuxarm.org/os/ArchLinuxARM-arm7-latest.tar.gz
 		BOOT=${BOARD_DIR}/boot.scr
-		wget -O ${BOOT} -N http://os.archlinuxarm.org/os/rockchip/boot/rock64/boot.scr
+		wget -N http://os.archlinuxarm.org/os/rockchip/boot/rock64/boot.scr
 		UBOOT=${BOARD_DIR}/u-boot-sunxi-with-spl.bin
-		wget -O ${UBOOT} -N http://os.archlinuxarm.org/os/rockchip/boot/rock64/u-boot.itb	
+		wget -N http://os.archlinuxarm.org/os/rockchip/boot/rock64/u-boot.itb	
 		BOOT_ZERO_COUNT=8
 		;;
 #RPi3 and RPi4
 	RPi3|RPi4)
 		IMAGE=${BOARD_DIR}/ArchLinuxARM-rpi-aarch64-latest.tar.gz
-		wget -O ${IMAGE} -N http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz
+		wget -N http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz
 		ROOT_PART=2
 		BOOT_PART=1
 		;;
@@ -56,13 +57,13 @@ case $BOARD in
 	Rock64)
 		echo "Downloading Rock64 items"
 		IMAGE=${BOARD_DIR}/ArchLinuxARM-aarch64-latest.tar.gz
-		wget -N -O ${IMAGE} http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
+		wget -N http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
 		BOOT=${BOARD_DIR}/boot.scr
-		wget -O ${BOOT} -N http://os.archlinuxarm.org/os/rockchip/boot/rock64/boot.scr
+		wget -N http://os.archlinuxarm.org/os/rockchip/boot/rock64/boot.scr
 		RKSD=${BOARD_DIR}/rksd_loader.img
-		wget -O ${RKSD} -N http://os.archlinuxarm.org/os/rockchip/boot/rock64/rksd_loader.img
+		wget -N http://os.archlinuxarm.org/os/rockchip/boot/rock64/rksd_loader.img
 		UBOOT=${BOARD_DIR}/u-boot.itb
-		wget -O ${UBOOT} -N http://os.archlinuxarm.org/os/rockchip/boot/rock64/u-boot.itb
+		wget -N http://os.archlinuxarm.org/os/rockchip/boot/rock64/u-boot.itb
 		BOOT_ZERO_COUNT=32
 		;;
 esac
