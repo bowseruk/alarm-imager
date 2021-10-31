@@ -7,7 +7,7 @@ RUN pacman -Syu wget base base-devel dosfstools linux-api-headers parted python-
 
 RUN mkdir -p /app /data/alarm-imager
 
-ADD https://raw.githubusercontent.com/bowseruk/ArchLinuxArm-Image-Create/image/build-image-root.sh /app/build-image-root.sh
+ADD https://raw.githubusercontent.com/bowseruk/ALARM-Imager/main/build-image-root.sh /app/build-image-root.sh
 
 RUN chmod u+x /app/build-image-root.sh
 
