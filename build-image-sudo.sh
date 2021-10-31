@@ -1,7 +1,7 @@
 #!/bin/bash
 ## This script was created by Adam Bolsover to automate the creation of an Arch Linux Arm (ALARM) image to various single board computers.
 # I have only added boards that I own and can test, others can be added but would need testing.
-# The latest version can be found at github in my repository: bowseruk/ArchLinuxArm-Image-Create - https://github.com/bowseruk/ArchLinuxArm-Image-Create
+# The latest version can be found at github in my repository: bowseruk/ArchLinuxArm-Image-Create - https://github.com/bowseruk/alarm-imager
 
 ## Configuration Variables
 # Choose to make an image (Image) or write direct directly to the sd card or usb drive (drive path e.g. /dev/mmcblk0)
@@ -111,7 +111,7 @@ banana_pi() {
     # Create the folders that are needed
     mkdir -p "${WORKING_PATH}/${BOARD}/boot" "${WORKING_PATH}/${BOARD}/dd"
     #Create the files need to make the device bootable
-    wget -c -N "https://raw.githubusercontent.com/bowseruk/ALARM-Imager/main/${BOARD}/boot/boot.cmd" -O "${WORKING_PATH}/${BOARD}/boot/boot.cmd"
+    wget -c -N "https://raw.githubusercontent.com/bowseruk/alarm-imager/main/${BOARD}/boot/boot.cmd" -O "${WORKING_PATH}/${BOARD}/boot/boot.cmd"
     sudo mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "BananaPI boot script" -d "${WORKING_PATH}/${BOARD}/boot/boot.cmd" "${WORKING_PATH}/${BOARD}/boot/boot.scr"
     ## TODO - uboot script
     if [ ! -f "${WORKING_PATH}/${BOARD}/dd/u-boot-sunxi-with-spl.bin" ]; then
