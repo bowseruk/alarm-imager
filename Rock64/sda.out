@@ -1,6 +1,0 @@
-label: dos
-label-id: 0xcf004905
-device: /dev/sda
-unit: sectors
-
-/dev/sda1 : start=       32768, size=   487292928, type=83
