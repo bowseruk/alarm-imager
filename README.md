@@ -1,6 +1,6 @@
 # ALARM (ArchLinuxArm) Imager
 
-I wrote this script as I install ALARM on a number of my SBCs and it was a pain to go through multiple devices manually using the [Arch Linux Arm website](https://archlinuxarm.org/) instructions for the board. So far I have implemented the following SBCs:
+I wrote this script as I install Arch Arm Linux (ALARM) on a number of my SBCs as part of a low(er) cost kubernetes cluster I am building at home, and it was a pain to go through multiple devices manually using the [Arch Linux Arm website](https://archlinuxarm.org/) instructions for the board. So far I have implemented a build method for the following Single Board Computers (SBCs) in the script:
 * [Banana Pi](https://wiki.archlinux.org/title/Banana_Pi) - The script recognises this board as BANANA_PI. As this is not officially supported by ALARM and I had the most deviations from the guide to get working, this is the most likely to break again.
 * [Banana Pro](https://wiki.archlinux.org/title/Banana_Pro) - The script recognises this board as BANANA_PRO. Same as the banana pi in terms of issues.
 * [Raspberry Pi model 3B/3B+](https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3) - The script recognises this board as RASPBERRY_PI_3. The script goes as described on the website, except the boot partition is mounted in the root partition to avoid the copy stage.
