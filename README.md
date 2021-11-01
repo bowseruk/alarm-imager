@@ -30,18 +30,16 @@ You can either edit the default variables at the top of the script, or you can u
 
     ArchLinuxArm-Imager.sh -m [Image] -d [Working Directory] -b [board] -a [Architecture] -s [Image Size] -h [Help]
 
-The '-m' flag sets if an image (input Image) or a drive is to used. If it is a drive put the /dev path such as '/dev/mmcblk0', '/dev/sda', 'etc'.
-The '-d' flag sets if a custom working directory for the script is used. The default location is '/tmp/alarm-image'.
-The '-b' flag sets the board to build for. The current list of options for this is:
-* Banana pi = BANANA_PI - arch = arm - arch flag will be ignored
-* Banana pi pro = BANANA_PRO - arch = arm  - arch flag will be ignored
-* Raspberry pi 3 = RASPBERRY_PI_3 - arch = arm  (armv7) or arm64
-* Raspberry pi 4 = RASPBERRY_PI_4 - arch = arm  (armv7) or arm64
-* Rock 64 = ROCK64 - arch = arm64  - arch flag will be ignored
-The Raspberry Pi 4 board is the default board the script will make an image for.
-The '-a' flag sets the architecture to build for. This will default to ARM64 when there is a choice between ARM (armv7) and ARM64.
-The '-s' flag is used to make a custom sized image. The units are MB and the default is 8000. 8000 MB is the minimum size recommended for ALARM images, so the smallest that can be selected.
-The '-h' flag will list how to use the script and will not proceed to make an image if used.
+The flags that can be set are:
+
+Flags | Effect
+------|-------
+-m | The '-m' flag sets if an image (input Image) or a drive is to used. If it is a drive put the /dev path such as '/dev/mmcblk0', '/dev/sda', 'etc'.
+-d | The '-d' flag sets if a custom working directory for the script is used. The default location is '/tmp/alarm-image'.
+-b | The '-b' flag sets the board to build for. The current list of options for this is:<br>* Banana pi = BANANA_PI - arch = arm - arch flag will be ignored<br>* Banana pi pro = BANANA_PRO - arch = arm  - arch flag will be ignored<br>* Raspberry pi 3 = RASPBERRY_PI_3 - arch = arm  (armv7) or arm64<br>* Raspberry pi 4 = RASPBERRY_PI_4 - arch = arm  (armv7) or arm64<br>* Rock 64 = ROCK64 - arch = arm64  - arch flag will be ignored<br>The Raspberry Pi 4 board is the default board the script will make an image for.
+-a | The '-a' flag sets the architecture to build for. This will default to ARM64 when there is a choice between ARM (armv7) and ARM64.
+-s | The '-s' flag is used to make a custom sized image. The units are MB and the default is 8000. 8000 MB is the minimum size recommended for ALARM images, so the smallest that can be selected.
+-h | The '-h' flag will list how to use the script and will not proceed to make an image if used.
 
 If the media was manupulated directly, it will be unmounted and ready to use. Otherwise the image will be saved in the Images directory of the working directory in the format ALARM-BOARD-ARCH e.g. ALARM-BANANA_PI-ARM.img. Most of the files used will be saved in the working directory to save time if a new image is made. You can delete these if this is not wanted.
 
