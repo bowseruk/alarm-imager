@@ -65,13 +65,7 @@ In this command the environment variables can be set:
 
 Variable | Description
 ---------|-------------
-BOARD | This sets the '-b' flag and chooses the board to build for. The current list of options for this is:
-. | * Banana pi = BANANA_PI - arch = arm - arch flag will be ignored
-. | * Banana pi pro = BANANA_PRO - arch = arm  - arch flag will be ignored
-. | * Raspberry pi 3 = RASPBERRY_PI_3 - arch = arm  (armv7) or arm64
-. | * Raspberry pi 4 = RASPBERRY_PI_4 - arch = arm  (armv7) or arm64
-. | * Rock 64 = ROCK64 - arch = arm64  - arch flag will be ignored
-. | The Raspberry Pi 4 board is the default board the script will make an image for.
+BOARD | This sets the '-b' flag and chooses the board to build for. The current list of options for this is:<br>* Banana pi = BANANA_PI - arch = arm - arch flag will be ignored <br>* Banana pi pro = BANANA_PRO - arch = arm  - arch flag will be ignored<br>* Raspberry pi 3 = RASPBERRY_PI_3 - arch = arm  (armv7) or arm64<br>* Raspberry pi 4 = RASPBERRY_PI_4 - arch = arm  (armv7) or arm64<br>* Rock 64 = ROCK64 - arch = arm64  - arch flag will be ignored<br>The Raspberry Pi 4 board is the default board the script will make an image for.
 ARCH | This sets the -a flag which chooses the architecture to build for when there is a choice. This will default to ARM64 when there is a choice between ARM (armv7) and ARM64. An invalid choice will revert to the default.
 IMAGE_SIZE | This sets te '-s' flag which is used to make a custom sized image. The units are MB and the default is 8000. 8000 MB is the minimum size recommended for ALARM images, so the smallest that can be selected.
 
