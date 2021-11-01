@@ -83,10 +83,12 @@ The image will be saved in the Images directory of the working directory in the 
 
 ## To Do
 There is some functionality I want to add to the script. This includes:
-* Adding a startup script with the recommended startup commands for each board
-* Add a dependancy checker per board
-* Script to resize boards to the full SD Card on first boot.
+* Adding a startup script with the recommended startup commands for each board.
+* Add a dependancy checker per board for the script.
+* Include a working script to resize boards to the full SD Card on first boot.
 * Add option to delete everything except the image.
+* An interactive version of the script
+* An option to select multiple images for creation.
 
 ## Contribution
 Feel free to send pull requests with any improvements. I only do this as a hobby, so changes may not be quick.
