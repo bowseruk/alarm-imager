@@ -13,7 +13,7 @@ The automation has three methods of use for creating an image:
 3. A docker image that runs the script. This can be built with the dockerfile or used directly from [Docker Hub](https://hub.docker.com/r/bowseruk/alarm-imager).
 They all execute the same process, so use your favourite method.
 
-If you make an image, you can then write it with your favourite imager. Using WSL2 it is possible to build an image from Windows and image it using Rufus or Balena, etc.
+If you make an image, you can then write it with your favourite image writing solution. Using WSL2 it is possible to build an image from Windows and image it using Rufus or Balena, etc.
 
 ## Getting Started
 
