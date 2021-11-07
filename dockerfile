@@ -9,10 +9,10 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y build-essential b
 
 RUN mkdir -p /app /data/alarm-imager
 
-ADD https://raw.githubusercontent.com/bowseruk/alarm-imager/main/build-image-root.sh /app/build-image-root.sh
+ADD https://raw.githubusercontent.com/bowseruk/alarm-imager/main/alarm-imager.sh /app/alarm-imager.sh
 
 RUN chmod u+x /app/build-image-root.sh
 
 WORKDIR /app
 
-CMD ./build-image-root.sh -m Image -d /data/alarm-imager/ -b $BOARD -a $ARCH -s $IMAGE_SIZE
+CMD ./alarm-imager.sh -m Image -d /data/alarm-imager/ -b $BOARD -a $ARCH -s $IMAGE_SIZE
