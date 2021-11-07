@@ -3,6 +3,7 @@
 I wrote this script as I install Arch Arm Linux (ALARM) on a number of my SBCs as part of a low(er) cost kubernetes cluster I am building at home, and it was a pain to go through multiple devices manually using the [Arch Linux Arm website](https://archlinuxarm.org/) instructions for the board. So far I have implemented a build method for the following Single Board Computers (SBCs) in the script:
 * [Banana Pi](https://wiki.archlinux.org/title/Banana_Pi) - The script recognises this board as BANANA_PI. As this is not officially supported by ALARM and I had the most deviations from the guide to get working, this is the most likely to break again.
 * [Banana Pro](https://wiki.archlinux.org/title/Banana_Pro) - The script recognises this board as BANANA_PRO. Same as the banana pi in terms of issues.
+* [Raspberry Pi model 2B](https://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2) - The script recognises this board as RASPBERRY_PI_3. The script goes as described on the website, except the boot partition is mounted in the root partition to avoid the copy stage.
 * [Raspberry Pi model 3B/3B+](https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3) - The script recognises this board as RASPBERRY_PI_3. The script goes as described on the website, except the boot partition is mounted in the root partition to avoid the copy stage.
 * [Raspberry Pi model 4](https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4) - The script recognises this board as RASPBERRY_PI_4. The script goes as described on the website, except the boot partition is mounted in the root partition to avoid the copy stage.
 * [Rock 64](https://archlinuxarm.org/platforms/armv8/rockchip/rock64) - The script recognises this board as ROCK64. The script goes as described on the website.
@@ -28,7 +29,7 @@ This should show you the list of block devices connected including the device yo
 
 You can either edit the default variables at the top of the script, or you can use flags to set them. The command with flags looks like:
 
-    ArchLinuxArm-Imager.sh -m [Image] -d [Working Directory] -b [board] -a [Architecture] -s [Image Size] -h [Help]
+    alarm-imager.sh -m [Image] -d [Working Directory] -b [board] -a [Architecture] -s [Image Size] -h [Help]
 
 The flags that can be set are:
 
@@ -36,9 +37,10 @@ Flags | Effect
 ------|-------
 -m | The '-m' flag sets if an image (input Image) or a drive is to used. If it is a drive put the /dev path such as '/dev/mmcblk0', '/dev/sda', 'etc'.
 -d | The '-d' flag sets if a custom working directory for the script is used. The default location is '/tmp/alarm-image'.
--b | The '-b' flag sets the board to build for. The current list of options for this is:<br>* Banana pi = BANANA_PI - arch = arm - arch flag will be ignored<br>* Banana pi pro = BANANA_PRO - arch = arm  - arch flag will be ignored<br>* Raspberry pi 3 = RASPBERRY_PI_3 - arch = arm  (armv7) or arm64<br>* Raspberry pi 4 = RASPBERRY_PI_4 - arch = arm  (armv7) or arm64<br>* Rock 64 = ROCK64 - arch = arm64  - arch flag will be ignored<br>The Raspberry Pi 4 board is the default board the script will make an image for.
+-b | The '-b' flag sets the board to build for. The current list of options for this are:<br>* ALL = create all possible images with all Arch combinations. This will ignore Mode and only work in Image mode.<br>* Banana pi = BANANA_PI - arch = armv7 - arch flag will be ignored<br>* Banana pi pro = BANANA_PRO - arch = armv7 - arch flag will be ignored<br>* Raspberry pi 2 = RASPBERRY_PI_2 - arch = armv7 - arch flag will be ignored<br>* Raspberry pi 3 = RASPBERRY_PI_3 - arch = armv7 or arm64<br>* Raspberry pi 4 = RASPBERRY_PI_4 - arch = armv7 or arm64<br>* Rock 64 = ROCK64 - arch = arm64  - arch flag will be ignored<br>The Raspberry Pi 4 board is the default board the script will make an image for.
 -a | The '-a' flag sets the architecture to build for. This will default to ARM64 when there is a choice between ARM (armv7) and ARM64.
 -s | The '-s' flag is used to make a custom sized image. The units are MB and the default is 8000. 8000 MB is the minimum size recommended for ALARM images, so the smallest that can be selected.
+-n | The '-n' flag will remove all items used to create the image. This will also delete any previously cached data.
 -h | The '-h' flag will list how to use the script and will not proceed to make an image if used.
 
 If the media was manupulated directly, it will be unmounted and ready to use. Otherwise the image will be saved in the Images directory of the working directory in the format ALARM-BOARD-ARCH e.g. ALARM-BANANA_PI-ARM.img. Most of the files used will be saved in the working directory to save time if a new image is made. You can delete these if this is not wanted.
@@ -63,7 +65,7 @@ In this command the environment variables can be set:
 
 Variable | Description
 ---------|-------------
-BOARD | This sets the '-b' flag and chooses the board to build for. The current list of options for this is:<br>* Banana pi = BANANA_PI - arch = arm - arch flag will be ignored <br>* Banana pi pro = BANANA_PRO - arch = arm  - arch flag will be ignored<br>* Raspberry pi 3 = RASPBERRY_PI_3 - arch = arm  (armv7) or arm64<br>* Raspberry pi 4 = RASPBERRY_PI_4 - arch = arm  (armv7) or arm64<br>* Rock 64 = ROCK64 - arch = arm64  - arch flag will be ignored<br>The Raspberry Pi 4 board is the default board the script will make an image for.
+BOARD | This sets the '-b' flag and chooses the board to build for. The current list of options for this are:<br>* ALL = create all possible images with all Arch combinations. This will ignore Mode and only work in Image mode.<br>* Banana pi = BANANA_PI - arch = armv7 - arch flag will be ignored<br>* Banana pi pro = BANANA_PRO - arch = armv7 - arch flag will be ignored<br>* Raspberry pi 2 = RASPBERRY_PI_2 - arch = armv7 - arch flag will be ignored<br>* Raspberry pi 3 = RASPBERRY_PI_3 - arch = armv7 or arm64<br>* Raspberry pi 4 = RASPBERRY_PI_4 - arch = armv7 or arm64<br>* Rock 64 = ROCK64 - arch = arm64  - arch flag will be ignored<br>The Raspberry Pi 4 board is the default board the script will make an image for.
 ARCH | This sets the -a flag which chooses the architecture to build for when there is a choice. This will default to ARM64 when there is a choice between ARM (armv7) and ARM64. An invalid choice will revert to the default.
 IMAGE_SIZE | This sets te '-s' flag which is used to make a custom sized image. The units are MB and the default is 8000. 8000 MB is the minimum size recommended for ALARM images, so the smallest that can be selected.
 
@@ -82,11 +84,8 @@ The image will be saved in the Images directory of the working directory in the 
 ## To Do
 There is some functionality I want to add to the script. This includes:
 * Adding a startup script with the recommended startup commands for each board.
-* Add a dependancy checker per board for the script.
 * Include a working script to resize boards to the full SD Card on first boot.
-* Add option to delete everything except the image.
 * An interactive version of the script
-* An option to select multiple images for creation.
 
 ## Contribution
 Feel free to send pull requests with any improvements. I only do this as a hobby, so changes may not be quick.
