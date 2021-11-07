@@ -11,7 +11,7 @@ RUN mkdir -p /app /data/alarm-imager
 
 ADD https://raw.githubusercontent.com/bowseruk/alarm-imager/main/alarm-imager.sh /app/alarm-imager.sh
 
-RUN chmod u+x /app/build-image-root.sh
+RUN chmod u+x /app/alarm-imager.sh
 
 WORKDIR /app
 
