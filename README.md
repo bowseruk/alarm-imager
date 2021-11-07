@@ -59,13 +59,13 @@ Or to pull it from Docker Hub:
 
 Then run the docker run command
 
-    docker run -e BOARD=board -e ARCH=architecture -e IMAGE_SIZE=desired_size  -v "/your/directory":/data/alarm-imager --privileged alarm-imager:latest
+    docker run -e BOARD=board -e ARCH=architecture -e IMAGE_SIZE=desired_size  -v "/your/directory":/data/alarm-imager --privileged bowseruk/alarm-imager:latest
 
 In this command the environment variables can be set:
 
 Variable | Description
 ---------|-------------
-BOARD | This sets the '-b' flag and chooses the board to build for. The current list of options for this are:<br>* All Boards = All - Create all possible images with all Arch combinations. This will ignore Mode and only work in Image mode.<br>* Banana pi = BANANA_PI - arch = armv7 - arch flag will be ignored<br>* Banana pi pro = BANANA_PRO - arch = armv7 - arch flag will be ignored<br>* Raspberry pi 2 = RASPBERRY_PI_2 - arch = armv7 - arch flag will be ignored<br>* Raspberry pi 3 = RASPBERRY_PI_3 - arch = armv7 or arm64<br>* Raspberry pi 4 = RASPBERRY_PI_4 - arch = armv7 or arm64<br>* Rock 64 = ROCK64 - arch = arm64  - arch flag will be ignored<br>The Raspberry Pi 4 board is the default board the script will make an image for.
+BOARD | This sets the '-b' flag and chooses the board to build for. The current list of options for this are:<br>* All Boards = All - Create all possible images with all Arch combinations.<br>* Banana pi = BANANA_PI - arch = armv7 - arch flag will be ignored<br>* Banana pi pro = BANANA_PRO - arch = armv7 - arch flag will be ignored<br>* Raspberry pi 2 = RASPBERRY_PI_2 - arch = armv7 - arch flag will be ignored<br>* Raspberry pi 3 = RASPBERRY_PI_3 - arch = armv7 or arm64<br>* Raspberry pi 4 = RASPBERRY_PI_4 - arch = armv7 or arm64<br>* Rock 64 = ROCK64 - arch = arm64  - arch flag will be ignored<br>The Raspberry Pi 4 board is the default board the script will make an image for.
 ARCH | This sets the -a flag which chooses the architecture to build for when there is a choice. This will default to ARM64 when there is a choice between ARM (armv7) and ARM64. An invalid choice will revert to the default.
 IMAGE_SIZE | This sets te '-s' flag which is used to make a custom sized image. The units are MB and the default is 8000. 8000 MB is the minimum size recommended for ALARM images, so the smallest that can be selected.
 
@@ -73,11 +73,11 @@ The /data/alarm-image directory is the working directory, and is where the image
 
 A sensible docker run command for Rock 64 Board might look like:
 
-    docker run -e BOARD=ROCK64 -v "/home/user/alarm-imager":/data/alarm-imager --privileged alarm-imager:latest
+    docker run -e BOARD=ROCK64 -v "/home/user/alarm-imager":/data/alarm-imager --privileged bowseruk/alarm-imager:latest
     
 And for a armv7 build on a raspberry pi 3 would look like:
 
-    docker run -e BOARD=RASPBERRY_PI_3 -e ARCH=ARM -v "/home/user/alarm-imager":/data/alarm-imager --privileged alarm-imager:latest
+    docker run -e BOARD=RASPBERRY_PI_3 -e ARCH=ARM -v "/home/user/alarm-imager":/data/alarm-imager --privileged bowseruk/alarm-imager:latest
 
 The image will be saved in the Images directory of the working directory in the format ALARM-BOARD-ARCH e.g. ALARM-BANANA_PI-ARM.img. Most of the files used will be saved in the working directory to save time if a new image is made. You can delete these if this is not wanted.
 
