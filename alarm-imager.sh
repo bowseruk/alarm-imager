@@ -27,7 +27,7 @@ TEMP_BUILD_PATH="/tmp/git"
 BOARD="RASPBERRY_PI_4"
 ARCH="arm64"
 # Size of the image made, ignored for direct to SD Card which uses all available space.
-IMAGE_SIZE=8000
+IMAGE_SIZE=7900
 
 ## Functions
 usage() {
@@ -47,7 +47,7 @@ where:
     Default = Raspberry_Pi_4
     All = create all possible images with all Arch combinations. This will ignore Mode and only work in Image mode.
 -a: Architecture to use. See above for available options. Default = ARM64
--s: Custom image size in MB for image mode. Default = 8000 (MB)
+-s: Custom image size in MB for image mode. Default = 7900 (MB)
 -n: Remove all items used to create the image. This will also delete any previously cached data.
 -h: Help for the script
 
@@ -432,8 +432,8 @@ while getopts "m:d:b:a:s:nh" opt; do
         ARCH=$OPTARG
         ;;
         s )
-        if [ $OPTARG -lt 8000 ]; then
-            echo "The image size is below 8000 MB, the minimum supported by Arch Linux Arm"
+        if [ $OPTARG -lt 7900 ]; then
+            echo "The image size is below 7900 MB, this is below the minimum supported by Arch Linux Arm"
             clean_up
             exit
         fi
