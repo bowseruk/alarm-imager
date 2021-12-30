@@ -15,4 +15,4 @@ RUN chmod u+x /app/alarm-imager.sh
 
 WORKDIR /app
 
-CMD ./alarm-imager.sh -m Image -d /data/alarm-imager/ -b $BOARD -a $ARCH -s $IMAGE_SIZE
+CMD ./alarm-imager.sh -m Image -d /data/alarm-imager -b $BOARD -a $ARCH -s $IMAGE_SIZE
