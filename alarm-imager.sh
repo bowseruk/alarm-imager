@@ -110,7 +110,7 @@ check_image() {
         echo "Making an image"
         make_directory "${TEMP_IMAGE_PATH}"
         IMAGE_LOCATION="${TEMP_IMAGE_PATH}/ALARM-${BOARD}-${ARCH}.img"
-        dd if=/dev/zero of="${IMAGE_LOCATION}" iflag=fullblock bs=1M count="${IMAGE_SIZE}" && sync
+        dd if=/dev/zero of="${IMAGE_LOCATION}" iflag=fullblock bs=1M count="${ROOT_SIZE}" && sync
         echo "${IMAGE_LOCATION}"
         if [ $SUDO = true ]; then
             TARGET=$(sudo losetup --show -f "${IMAGE_LOCATION}")
@@ -151,7 +151,7 @@ format_image() {
     make_sudo parted -s "${TARGET}" unit "${ROOT_UNIT}" mkpart primary $ROOT_OFFSET 100%
     if [ ! -z "$ROOT_FORMAT_OPTIONS" ]; then
         echo "Formatting root partition with options"
-            make_sudo mkfs.ext4 $ROOT_FORMAT_OPTIONS "${ROOT_PART}"
+        make_sudo mkfs.ext4 $ROOT_FORMAT_OPTIONS "${ROOT_PART}"
     else
         echo "Formatting root partition without options"
         make_sudo mkfs.ext4 "${ROOT_PART}"
@@ -211,6 +211,13 @@ clean_up() {
 process_image() {
     make_directory "${WORKING_PATH}"
     cd "${WORKING_PATH}"
+    if [ ! -z "$ROOT_OFFSET_MB" ]; then
+        echo "Compensating for offset of root"
+        ROOT_SIZE=$((IMAGE_SIZE - ROOT_OFFSET_MB))
+    else
+        echo "Not Compensating for offset of root"
+        ROOT_SIZE=$IMAGE_SIZE
+    fi
     check_image
     format_image
     mount_image
@@ -226,6 +233,7 @@ banana_selected(){
     ZERO_LENGTH=8
     ROOT_OFFSET=8192
     ROOT_UNIT="kB"
+    ROOT_OFFSET_MB=${ROOT_OFFSET}/1000
     ## Board unique variables
     if [ $1 = "pi" ]; then
         SUFFIX="pi"
@@ -284,6 +292,7 @@ raspberry_selected(){
     BOOT_SIZE=200
     ROOT_OFFSET=$((BOOT_SIZE+BOOT_OFFSET))
     ROOT_UNIT="MB"
+    ROOT_OFFSET_MB=$ROOT_OFFSET
     ## Board unique variables
     if [ "$1" = 2 ]; then
         SUFFIX=2
@@ -326,6 +335,7 @@ rock64_selected() {
     ZERO_LENGTH=32
     ROOT_OFFSET=32768
     ROOT_UNIT="kB"
+    ROOT_OFFSET_MB=${ROOT_OFFSET}/1000
     ## Board unique variables
     BOARD="Rock64"
     ARCH="arm64"
