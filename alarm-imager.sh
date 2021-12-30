@@ -112,7 +112,7 @@ check_image() {
         IMAGE_LOCATION="${TEMP_IMAGE_PATH}/ALARM-${BOARD}-${ARCH}.img"
         dd if=/dev/zero of="${IMAGE_LOCATION}" iflag=fullblock bs=1M count="${ROOT_SIZE}" && sync
         echo "${IMAGE_LOCATION}"
-        if [ $SUDO = true ]; then
+        if [ ! -z $SUDO ]; then
             TARGET=$(sudo losetup --show -f "${IMAGE_LOCATION}")
         else
             TARGET=$(losetup --show -f "${IMAGE_LOCATION}")
