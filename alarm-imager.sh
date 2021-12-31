@@ -110,7 +110,7 @@ check_image() {
         echo "Making an image"
         make_directory "${TEMP_IMAGE_PATH}"
         IMAGE_LOCATION="${TEMP_IMAGE_PATH}/ALARM-${BOARD}-${ARCH}.img"
-        dd if=/dev/zero of="${IMAGE_LOCATION}" iflag=fullblock bs=1M count="${ROOT_SIZE}" && sync
+        dd if=/dev/zero of="${IMAGE_LOCATION}" iflag=fullblock bs=1M count="${IMAGE_SIZE}" && sync
         echo "${IMAGE_LOCATION}"
         if [ ! -z $SUDO ]; then
             TARGET=$(sudo losetup --show -f "${IMAGE_LOCATION}")
@@ -141,7 +141,7 @@ format_image() {
         echo "Creating a boot partition"
         BOOT_PART="${TARGET}p1"
         ROOT_PART="${TARGET}p2"
-        make_sudo parted -s "${TARGET}" unit MB mkpart primary fat32 $BOOT_OFFSET $((BOOT_SIZE+BOOT_OFFSET))
+        make_sudo parted -s "${TARGET}" unit MB mkpart primary fat32 $BOOT_OFFSET $ROOT_OFFSET
         make_sudo parted -s "${TARGET}" set 1 boot on   
         make_sudo mkfs.vfat "${BOOT_PART}"
     else
