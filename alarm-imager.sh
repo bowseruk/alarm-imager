@@ -27,7 +27,7 @@ TEMP_BUILD_PATH="/tmp/git"
 BOARD="RASPBERRY_PI_4"
 ARCH="arm64"
 # Size of the image made, ignored for direct to SD Card which uses all available space.
-IMAGE_SIZE=7900
+IMAGE_SIZE=7800
 
 ## Functions
 usage() {
