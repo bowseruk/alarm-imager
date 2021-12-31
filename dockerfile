@@ -1,7 +1,7 @@
 ARG VERSION=latest
 FROM ubuntu:$VERSION
 
-ENV BOARD=Raspberry_Pi_4 ARCH=ARM64 IMAGE_SIZE=8000
+ENV BOARD=Raspberry_Pi_4 ARCH=ARM64 IMAGE_SIZE=7900
 
 ARG DEBIAN_FRONTEND="non-interactive" TZ="Europe/London"
 
